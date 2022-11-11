@@ -57,7 +57,7 @@ if __name__ == "__main__":
         print(row, end="\n")
 
     empty_spaces, start_locations, exit_locations = get_start_end_locations(maze)
-    
+
     print("empty_spaces   : ",empty_spaces)
     print("start_locations: ",start_locations)
     print("exit_locations : ",exit_locations)
