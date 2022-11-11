@@ -22,24 +22,31 @@ def read_maze(file_name):
         raise SystemExit
 
 
-def find_empty_space(maze):
+def get_start_end_locations(maze):
     row = 0
     empty_spaces = []
+    start_locations = []
+    exit_locations = []
 
     for lst in maze:
         empty = [(row, col) for col, val in enumerate(lst) if val == 0]
         if empty:
             empty_spaces.append(empty)
-        row = row+1
 
-    return empty_spaces
+        if row == 0:
+            start_locations.extend(empty)
 
+        if row == (len(maze)-1):
+            exit_locations.extend(empty)
 
+        row = row + 1
+
+    return empty_spaces, start_locations, exit_locations
 
 
 if __name__ == "__main__":
 
-    maze_name = "maze1"
+    maze_name = "maze2"
     filepath = os.path.join("..", "mazes", f"{maze_name}.txt")
     print("filepath",filepath)
     maze = read_maze(filepath)
@@ -49,5 +56,8 @@ if __name__ == "__main__":
     for row in maze:
         print(row, end="\n")
 
-    empty_spaces = find_empty_space(maze)
-    print("empty_spaces: ",empty_spaces)
+    empty_spaces, start_locations, exit_locations = get_start_end_locations(maze)
+    
+    print("empty_spaces   : ",empty_spaces)
+    print("start_locations: ",start_locations)
+    print("exit_locations : ",exit_locations)
