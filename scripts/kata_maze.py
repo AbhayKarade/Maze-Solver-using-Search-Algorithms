@@ -5,43 +5,10 @@ Email        : akarade@wpi.edu
 
 """
 import os
+from utils import read_maze, get_start_end_locations, offsets
 
-def read_maze(file_name):
-    try:
-        with open(file_name) as fn:
-            maze = [[int(char) for char in line.strip("\n")] for line in fn]
-            for row in maze:
-                if len(row) != len(maze[0]):
-                    print("The Maze is not rectangular")
-                    raise SystemExit
-
-            return maze
-
-    except OSError:
-        print("Selected folder is not accessible")
-        raise SystemExit
-
-
-def get_start_end_locations(maze):
-    row = 0
-    empty_spaces = []
-    start_locations = []
-    exit_locations = []
-
-    for lst in maze:
-        empty = [(row, col) for col, val in enumerate(lst) if val == 0]
-        if empty:
-            empty_spaces.append(empty)
-
-        if row == 0:
-            start_locations.extend(empty)
-
-        if row == (len(maze)-1):
-            exit_locations.extend(empty)
-
-        row = row + 1
-
-    return empty_spaces, start_locations, exit_locations
+def visulization():
+    pass
 
 
 if __name__ == "__main__":
