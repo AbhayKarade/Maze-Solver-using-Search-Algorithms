@@ -72,5 +72,27 @@ def get_path(predecessors, start, goal):
     path.reverse()
     return path
 
+def select_pose(pose_list, location):
+    """
+    Input: 
+    pose_list: list 
+    location : string
+
+    """
+
+    print(f"Following {location} locations are available:")
+    for inx, pos in enumerate(pose_list):
+        print(f"{inx}. Location: {pos} ")
+    while True:
+        try:
+            val = int(input("\nEnter location number: "))
+        except:
+            raise ValueError("Please choose correct value from options")
+        if val < len(pose_list) and val >= 0:
+            pose = pose_list[val]
+            break
+        print("Invalid Number")
+    return pose
+
 
 
