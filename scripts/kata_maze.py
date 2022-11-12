@@ -4,8 +4,10 @@ Developed by : Abhay Chhagan Karade
 Email        : akarade@wpi.edu
 
 """
+import argparse
 import os
-from utils import read_maze, get_start_end_locations
+
+from utils import read_maze, get_start_end_locations,select_pose
 
 from search import Search
 
@@ -13,7 +15,8 @@ from matplotlib import colors
 import matplotlib.pyplot as plt
 import numpy as np
 
-def visualization(start_pos, goal_pos, feed_maze, result, explored_nodes):
+
+def visualization(start_pos, goal_pos, feed_maze, result):
     '''
     This function uses Matplotlib to show plot of maze with final path
 
@@ -48,8 +51,8 @@ def visualization(start_pos, goal_pos, feed_maze, result, explored_nodes):
     plt.imshow(feed_maze, cmap=colormap)
 
 
-def main(maze):
-  
+def main(algorithm,maze):
+
     filepath = os.path.join("..", "mazes", f"{maze}.txt")
 
     maze = read_maze(filepath)
@@ -57,21 +60,49 @@ def main(maze):
     # Get start and Goal location
     _, start_pos, goal_pos = get_start_end_locations(maze)
 
+    if len(start_pos) > 1:
+        start = select_pose(start_pos, "Start")
+    else:
+        start = start_pos[0]
+
+    if len(goal_pos) > 1:
+        goal = select_pose(goal_pos, "Exit")
+    else:
+        goal = goal_pos[0]
+
+    print("\nStart : ", start)
+    print("Goal  : ", goal)
+
     algos = Search(maze)
 
-    result, explored_nodes = algos.bfs(start_pos[0], goal_pos[0])
+    if algorithm == "bfs":
+        result, explored_nodes = algos.bfs(start, goal)
 
-    visualization(start_pos[0], goal_pos[0],
-                        maze, result, explored_nodes)
+    elif algorithm == "dfs":
+        result, explored_nodes = algos.dfs(start, goal)
+
+    visualization(start, goal,
+                  maze, result)
 
     plt.show()
 
     print("\n**************Robot reached goal location******************")
 
 
-
 if __name__ == "__main__":
 
-    maze_name = "maze2"
+    Parser = argparse.ArgumentParser()
+    Parser.add_argument('--algorithm', type=str, default="bfs",
+                        help='Select algorithm to use on maze file')
 
-    main(maze_name)
+    Parser.add_argument('--maze', type=str, choices=['maze1', 'maze2', 'maze3', 'maze4', 'maze5'], default='maze5',
+                        help=('Choose the maze. '
+                              'Can be one of: %(choices)s. Default: ' '%(default)s'))
+
+    Args = Parser.parse_args()
+    algorithm = Args.algorithm
+    maze = Args.maze
+
+    print(f"\nAlgorithm : {algorithm}, Maze: {maze}\n")
+
+    main(algorithm, maze)
