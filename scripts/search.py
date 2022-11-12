@@ -17,6 +17,10 @@ class Search:
         self.maze = maze
 
     def bfs(self, start, goal):
+
+        """
+        Breadth first search algorithm
+        """
         q = Queue()
         q.put(start)
         predecessors = {start: None}
@@ -43,6 +47,10 @@ class Search:
 
 
     def dfs(self, start, goal):
+
+        """
+        Depth first search algorithm
+        """
         stack = deque()
         stack.append(start)
         predecessors = {start: None}

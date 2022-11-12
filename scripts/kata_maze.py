@@ -17,17 +17,17 @@ import numpy as np
 
 
 def visualization(start_pos, goal_pos, feed_maze, result):
-    '''
+    """
     This function uses Matplotlib to show plot of maze with final path
 
-    Following values will be assigned to variables for plotting 
+    Following values will be assigned to variables for plotting with different colors
     empty spaces    : 0
     obstacles       : 1
     start_pos       : 2
     final path      : 3
     goal_pos        : 4
 
-    '''
+    """
 
     coloring = {0: "white",
                 1: "black",
@@ -52,38 +52,30 @@ def visualization(start_pos, goal_pos, feed_maze, result):
 
 
 def main(algorithm,maze):
-
-    filepath = os.path.join("..", "mazes", f"{maze}.txt")
-
+    #To read the maze file
+    filepath = os.path.join("mazes", f"{maze}.txt")
     maze = read_maze(filepath)
 
+
     # Get start and Goal location
+    # If multiple locations are available ask user to choose
     _, start_pos, goal_pos = get_start_end_locations(maze)
-
-    if len(start_pos) > 1:
-        start = select_pose(start_pos, "Start")
-    else:
-        start = start_pos[0]
-
-    if len(goal_pos) > 1:
-        goal = select_pose(goal_pos, "Exit")
-    else:
-        goal = goal_pos[0]
-
+    start = select_pose(start_pos, "Start") if (len(start_pos) > 1) else start_pos[0]
+    goal = select_pose(goal_pos, "Exit") if (len(goal_pos) > 1) else goal_pos[0]
     print("\nStart : ", start)
     print("Goal  : ", goal)
 
-    algos = Search(maze)
 
+    #To select the algorithm
+    algos = Search(maze)
     if algorithm == "bfs":
-        result, explored_nodes = algos.bfs(start, goal)
+        result,_ = algos.bfs(start, goal)
 
     elif algorithm == "dfs":
-        result, explored_nodes = algos.dfs(start, goal)
+        result,_ = algos.dfs(start, goal)
 
-    visualization(start, goal,
-                  maze, result)
 
+    visualization(start, goal,maze, result)
     plt.show()
 
     print("\n**************Robot reached goal location******************")
@@ -91,6 +83,7 @@ def main(algorithm,maze):
 
 if __name__ == "__main__":
 
+    #To read the arguments
     Parser = argparse.ArgumentParser()
     Parser.add_argument('--algorithm', type=str, default="bfs",
                         help='Select algorithm to use on maze file')

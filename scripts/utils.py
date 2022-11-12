@@ -6,6 +6,10 @@ Email        : akarade@wpi.edu
 
 import os
 
+"""
+To explore neighbor nodes of current node
+"""
+
 offsets = {
     "up": (-1, 0),
     "right": (0, 1),
@@ -14,8 +18,10 @@ offsets = {
 }
 
 
-
 def read_maze(file_name):
+    """
+    To read maze from .txt file and check if it is rectangular
+    """
     try:
         with open(file_name) as fn:
             maze = [[int(char) for char in line.strip("\n")] for line in fn]
@@ -32,6 +38,10 @@ def read_maze(file_name):
 
 
 def get_start_end_locations(maze):
+    """
+    To get the start and end locations in a given maze
+
+    """
     row = 0
     empty_spaces = []
     start_locations = []
@@ -54,6 +64,10 @@ def get_start_end_locations(maze):
 
 
 def is_legal_pos(maze, pose):
+    """
+    To check if the explored pose is traversable for robot
+
+    """
     row_size = len(maze)
     col_size = len(maze[0])
     row, col = pose
@@ -61,6 +75,10 @@ def is_legal_pos(maze, pose):
 
 
 def get_path(predecessors, start, goal):
+    """
+    To make a list of final path coordinates from the predecessor dictionary
+
+    """
     current_pos = goal
     path = []
 
@@ -72,8 +90,12 @@ def get_path(predecessors, start, goal):
     path.reverse()
     return path
 
+
 def select_pose(pose_list, location):
     """
+
+    To select the pose from given options
+
     Input: 
     pose_list: list 
     location : string
@@ -93,6 +115,3 @@ def select_pose(pose_list, location):
             break
         print("Invalid Number")
     return pose
-
-
-
