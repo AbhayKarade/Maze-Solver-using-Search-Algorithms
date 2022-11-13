@@ -1,4 +1,7 @@
+# Path Robotics - coding assessment
+
 # Kata-Maze
+
 
 Kata- Maze is a maze solver for simple mazes.
 
