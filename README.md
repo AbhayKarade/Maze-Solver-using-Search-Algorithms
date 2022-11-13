@@ -89,7 +89,7 @@ cd Kata_Maze
 python scripts/kata_maze.py --algorithm dfs --maze maze6
 ```
 
-To run the mazes which has multiple start of exit positions user have to choose the location by typing the chosen option.
+To run the mazes which has multiple start of exit positions, user has to choose the location by typing the chosen option.
 
 To run `dfs` on `maze5`
 
@@ -160,12 +160,12 @@ Color coding of following examples:
 ![](/images/maze7.png)
 
 
-A naive approach to solve this problem statement would be to hardcode behavior of the robot with multiple conditions and interlocks to and execute that particular condition on the robot ship to get to the goal pose, however this is a very environment specific solution and would not generalize well.
+A naive approach to solve this problem statement would be to hardcode behavior of the ship with multiple conditions and interlocks to execute that particular condition on the ship to get to the goal pose, however this is a very environment specific solution and would not generalize well.
 
 So I described a generalized approach to solve this this problem statement in following steps 
 
 ### Step 1: 
-- Generate sample Mazes with the obstacles and tight spaces for robot so that it has to perform different maneuvers – turn, move backward.
+- Generate sample Mazes with the obstacles and tight spaces for the ship so that it has to perform different maneuvers – turn,move backward to reach valid exit.
 
 - The mazes should be of increasing difficulty level, starting from the simple maze with straight path to involving tight turns and dead ends.
 
@@ -173,11 +173,14 @@ So I described a generalized approach to solve this this problem statement in fo
 ### Step 2:
 - Implement a point robot solver for the maze, and to get better performance implement a heuristic based algorithm like A*
 
-### Step 3: 
+### Step 3:
+- Build a visualization function which will help us check the performance of the the algorithm on mazes.
+
+### Step 4: 
 - Make the robot ship of three pixels to move through the simple straight line passage,without considering turns. 
 All three pixels should move together 
 
-### Step 4:
+### Step 5:
 - Add collision constraints of robot by defining configuration space  and creating visibility graph.
 
 - Following type of collision checking methods are used for mobile robots :
@@ -201,7 +204,7 @@ All three pixels should move together
 
 
 
-### Step 5: 
+### Step 6: 
 
 - Add Kinematic constraints to the ship.
 
@@ -225,16 +228,16 @@ The following equations will help us define the model of robot:
 
      Differential Drive Equations  [1]
 
-Ur, Ul =  angular wheel velocities 
+ur, ul =  angular wheel velocities 
 
 
-### Step 6:
+### Step 7:
 
 Implement an hybrid A* algorithm which will consider non holonomic constraints of robot motion and our model as differential drive. 
 
 Hybrid A* will use the collision function we created to plan rotation condition check. 
 
-- Previously implemented A* produces discontinuous path, which might not be traversable for the ship with kinematic constraints, so here we implement Hybrid A*, a variant of the A* algorithm.
+- Previously implemented A* produces discontinuous path, which might not be traversable for the ship with kinematic constraints, so here we implement Hybrid A* [2] , a variant of the A* algorithm.
 
 - Hybrid A* considers the vehicles dynamics and gives smooth path which could be followed by vehicle
 
@@ -279,18 +282,18 @@ This describes changes in  X, Y, θ as a function of time.
 - This algorithm takes length of robot in consideration so the  3*3 space needed for the robot ship will be accounted by the algorithm.
 
 
-### Step 7: 
-- Check the robot performance on multiple turns and complex mazes with multiple obstacles
+### Step 8: 
+- Check the robot performance on multiple turns and complex mazes with multiple obstacles and update code accordingly.
 
  
-## Failure cases:
-- This robot will not get out of random maze without a given goal pose.
+## Assumptions:
+- Start and goal pose will be selected by user. The robot will not get out of random maze without a given goal pose.
 
 - Robot can follow the given path and commands
 
 
 ## References : 
 
-- Planning Algorithms and Differential Models (http://lavalle.pl/planning/ch13.pdf)
+-  [Planning Algorithms and Differential Models](http://lavalle.pl/planning/ch13.pdf)
 
-- Hybrid A* (https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8702779)
+- [Hybrid A* ](https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8702779)
