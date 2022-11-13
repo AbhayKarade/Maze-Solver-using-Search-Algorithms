@@ -1,4 +1,4 @@
-# Path Robotics - coding assessment
+# [Path Robotics](https://www.path-robotics.com/) - coding assessment
 
 # Kata-Maze
 
@@ -164,6 +164,13 @@ A naive approach to solve this problem statement would be to hardcode behavior o
 
 So I described a generalized approach to solve this this problem statement in following steps 
 
+## Assumptions:
+- Start and goal pose will be selected by user. The robot will not get out of random maze without a given goal pose.
+
+- Robot can follow the given path and commands
+
+## Approach:
+
 ### Step 1: 
 - Generate sample Mazes with the obstacles and tight spaces for the ship so that it has to perform different maneuvers – turn,move backward to reach valid exit.
 
@@ -285,11 +292,13 @@ This describes changes in  X, Y, θ as a function of time.
 ### Step 8: 
 - Check the robot performance on multiple turns and complex mazes with multiple obstacles and update code accordingly.
 
- 
-## Assumptions:
-- Start and goal pose will be selected by user. The robot will not get out of random maze without a given goal pose.
+## Conclusion:
 
-- Robot can follow the given path and commands
+In this assessment, I implemented an algorithm approach to solve the given problem statement. The solution developed in the coding part is for the pixel robot, multiple algorithms could be implemented as per the situation e.g. Dijkstra, A*, however, to keep it simple I implemented Breadth-first search and Depth First Search algorithms.,
+For part 2 consist of developing a solution for the real robot which is modelled in 2D space, for that I brainstormed multiple solutions however an approach which considers the model of the robot will generalize best for the same structure mazes. 
+Path planning problem statements are fun to solve as we can directly check performance on visualization.
+Thank you [Path Robotics](https://www.path-robotics.com/) for the opportunity to work on this problem statement.
+
 
 
 ## References : 
