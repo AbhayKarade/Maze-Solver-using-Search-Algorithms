@@ -74,9 +74,11 @@ def main(algorithm,maze):
     elif algorithm == "dfs":
         result,_ = algos.dfs(start, goal)
 
+    print("\nClose window to end this program")
 
     visualization(start, goal,maze, result)
     plt.show()
+
 
     print("\n**************Robot reached goal location******************")
 
@@ -88,7 +90,7 @@ if __name__ == "__main__":
     Parser.add_argument('--algorithm', type=str, default="bfs",
                         help='Select algorithm to use on maze file')
 
-    Parser.add_argument('--maze', type=str, choices=['maze1', 'maze2', 'maze3', 'maze4', 'maze5'], default='maze5',
+    Parser.add_argument('--maze', type=str, choices=['maze1', 'maze2', 'maze3', 'maze4', 'maze5', 'maze6'], default='maze5',
                         help=('Choose the maze. '
                               'Can be one of: %(choices)s. Default: ' '%(default)s'))
 
