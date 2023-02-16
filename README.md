@@ -1,9 +1,9 @@
-# [Path Robotics](https://www.path-robotics.com/) - coding assessment
+<!-- # [Path Robotics](https://www.path-robotics.com/) - coding assessment-->
 
-# Kata-Maze
+# Maze Solver using Search Algorithms
 
 
-Kata- Maze is a maze solver for simple mazes.
+<!--Kata- Maze is a maze solver for simple mazes. -->
 
 This coding assessment has two parts
 ### Part 1 : Coding 
