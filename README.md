@@ -150,7 +150,6 @@ Color coding of following examples:
 
 
 
-
 # Part 2 : Analysis of path planning on a fixed length robot.
 
 ## Moving a 1x3 Robot through a maze
