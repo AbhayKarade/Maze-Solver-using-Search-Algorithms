@@ -1,18 +1,16 @@
-<!-- # [Path Robotics](https://www.path-robotics.com/) - coding assessment-->
-
 # Maze Solver using Search Algorithms
 
 
 <!--Kata- Maze is a maze solver for simple mazes. -->
 
-This coding assessment has two parts
-### Part 1 : Coding 
-### Part 2 : Reflection/Analysis
+<!-- This coding assessment has two parts -->
+### Part 1 : Implementation of discrete planning algorithms on a pixel robot. 
+### Part 2 : Analysis of path planning on a fixed length robot.
 
 ### Assumptions :
 * Map is provided with a `.txt` file.
 * Maze is rectangular.
-* Start and goal pose will be selected by user.
+* Start and goal pose will be selected by the user.
 
 
 ## Algorithms Implemented:
@@ -153,9 +151,9 @@ Color coding of following examples:
 
 
 
-# Part 2 : Reflection/Analysis
+# Part 2 : Analysis of path planning on a fixed length robot.
 
-## Moving a 1x3 “ship” through a maze
+## Moving a 1x3 Robot through a maze
 
 ![](/images/maze7.png)
 
@@ -294,11 +292,9 @@ This describes changes in  X, Y, θ as a function of time.
 
 ## Conclusion:
 
-In this assessment, I implemented an algorithm approach to solve the given problem statement. The solution developed in the coding part is for the pixel robot, multiple algorithms could be implemented as per the situation e.g. Dijkstra, A*, however, to keep it simple I implemented Breadth-first search and Depth First Search algorithms.,
+The solution developed in the part 1 is for the pixel robot, multiple algorithms could be implemented as per the situation e.g. Dijkstra, A*, however, to keep it simple I implemented Breadth-first search and Depth First Search algorithms.
 For part 2 consist of developing a solution for the real robot which is modelled in 2D space, for that I brainstormed multiple solutions however an approach which considers the model of the robot will generalize best for the same structure mazes. 
 Path planning problem statements are fun to solve as we can directly check performance on visualization.
-Thank you [Path Robotics](https://www.path-robotics.com/) for the opportunity to work on this problem statement.
-
 
 
 ## References : 
